@@ -27,7 +27,7 @@
     .card {
       background: var(--surface); border: 1px solid var(--border); padding: 2rem;
       border-radius: 8px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none; color: var(--text); box-shadow: var(--shadow);
+      color: var(--text); box-shadow: var(--shadow); cursor: pointer; display: block; text-decoration: none;
     }
 
     .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--accent); }
@@ -46,21 +46,28 @@
   <h1>Formula AI-Tech</h1>
 
   <div class="grid-container">
-    <a href="https://diapdemo.formula.it:8282/due/#/home/desktop/AI%20-%20Predictive%20Engine" class="card">
+    <div class="card" onclick="inviaMessaggioNavigazione('https://diapdemo.formula.it:8282/due/#/home/desktop/AI%20-%20Predictive%20Engine')">
       <div class="icon-box">AI</div>
       <h2>AI-Predictive Engine</h2>
-    </a>
+    </div>
 
-    <a href="https://diapdemo.formula.it:8282/due/#/home/desktop/AI%20-%20Sales%20Accelerator" class="card">
+    <div class="card" onclick="inviaMessaggioNavigazione('https://diapdemo.formula.it:8282/due/#/home/desktop/AI%20-%20Sales%20Accelerator')">
       <div class="icon-box">SA</div>
       <h2>AI-Sales Accelerator</h2>
-    </a>
+    </div>
 
-    <a href="https://diapdemo.formula.it:8282/due/#/home/desktop/AI%20-%20Ricerca%20Fornitori" class="card">
+    <div class="card" onclick="inviaMessaggioNavigazione('https://diapdemo.formula.it:8282/due/#/home/desktop/AI%20-%20Ricerca%20Fornitori')">
       <div class="icon-box">FR</div>
       <h2>AI-Finder</h2>
-    </a>
+    </div>
   </div>
 
+  <script>
+      function inviaMessaggioNavigazione(percorsoTarget) {
+          let routePath = percorsoTarget.includes('#') ? percorsoTarget.split('#')[1] : percorsoTarget;
+          const payload = { type: 'ROUTER_NAVIGATION', action: 'navigate', url: percorsoTarget, route: routePath };
+          window.parent.postMessage(payload, '*');
+      }
+  </script>
 </body>
 </html>
